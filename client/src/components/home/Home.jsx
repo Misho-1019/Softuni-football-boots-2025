@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import Header from "../header/Header";
 
 export default function Home() {
@@ -25,7 +26,7 @@ export default function Home() {
                                                 recommendations—all in one place. Step up your game with the right pair today!
                                             </p>
                                             <div className="">
-                                                <a href="">Contact Us</a>
+                                                <Link to="/register">Register</Link>
                                             </div>
                                         </div>
                                     </div>

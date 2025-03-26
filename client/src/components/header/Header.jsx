@@ -5,7 +5,7 @@ export default function Header() {
         <header className="header_section">
             <div className="container-fluid">
                 <nav className="navbar navbar-expand-lg custom_nav-container ">
-                    <a className="navbar-brand" href="index.html">
+                    <a className="navbar-brand">
                         <span>Football Boots</span>
                     </a>
                     <button
