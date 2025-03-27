@@ -10,7 +10,7 @@ export default function EditBoot() {
                     <input type="text" name="material" placeholder="Material" required />
                     <input type="text" name="color" placeholder="Color" required />
                     <input type="text" name="stud" placeholder="Stud Type" required />
-                    <button type="submit">Edit</button>
+                    <input type="submit" className="btn" value="Edit"/>
                 </form>
             </div>
         </div>
