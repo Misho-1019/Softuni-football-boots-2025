@@ -3,7 +3,7 @@ export default function BootDetails() {
         <div className="details-container">
             <div className="details-card">
                 <div className="details-image">
-                    <img src="https://via.placeholder.com/500x300" alt="Football Boot" />
+                    <img src="/images/pink.jpeg" alt="Football Boot" />
                 </div>
                 <div className="details-info">
                     <h2>Nike Mercurial Vapor 14</h2>

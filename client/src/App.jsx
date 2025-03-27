@@ -12,22 +12,23 @@ import { useState } from "react"
 
 function App() {
     return (
-        <>
+        <div>
+
             <Header />
 
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/boots" element={<Catalog />} />
+                <Route path="/boots/create" element={<CreateBoot />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
-                <Route path="/boots/create" element={<CreateBoot />} />
             </Routes>
 
             <Info />
 
             <Footer />
 
-        </>
+        </div>
     )
 }
 

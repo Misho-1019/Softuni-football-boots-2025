@@ -6,7 +6,6 @@ export default function Info() {
                     <a href="">
                         <div className="item ">
                             <div className="img-box box-1">
-                                <img src="" alt="" />
                             </div>
                             <div className="detail-box">
                                 <p>Location</p>
@@ -16,7 +15,6 @@ export default function Info() {
                     <a href="">
                         <div className="item ">
                             <div className="img-box box-2">
-                                <img src="" alt="" />
                             </div>
                             <div className="detail-box">
                                 <p>+02 1234567890</p>
@@ -26,7 +24,6 @@ export default function Info() {
                     <a href="">
                         <div className="item ">
                             <div className="img-box box-3">
-                                <img src="" alt="" />
                             </div>
                             <div className="detail-box">
                                 <p>pro:direct@gmail.com</p>

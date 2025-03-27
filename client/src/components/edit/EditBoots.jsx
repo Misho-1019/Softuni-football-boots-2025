@@ -4,12 +4,12 @@ export default function EditBoot() {
             <div className="auth-box">
                 <h2>Edit Football Boot</h2>
                 <form>
-                    <input type="text" placeholder="Boot Name" required />
-                    <input type="text" placeholder="Brand" required />
-                    <input type="number" placeholder="Price" required />
-                    <input type="text" placeholder="Material" required />
-                    <input type="text" placeholder="Color" required />
-                    <input type="text" placeholder="Stud Type" required />
+                    <input type="text" id="imageUrl" name="imageUrl" placeholder="Upload a photo..." />
+                    <input type="text" name="brand" placeholder="Brand" required />
+                    <input type="number" name="price" placeholder="Price" required />
+                    <input type="text" name="material" placeholder="Material" required />
+                    <input type="text" name="color" placeholder="Color" required />
+                    <input type="text" name="stud" placeholder="Stud Type" required />
                     <button type="submit">Edit</button>
                 </form>
             </div>
