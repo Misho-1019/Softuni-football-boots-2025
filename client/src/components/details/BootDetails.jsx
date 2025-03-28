@@ -42,7 +42,7 @@ export default function BootDetails() {
                     </div>
                     <div className="details-actions">
                         <Link to="/boots" className="btn secondary">Back</Link>
-                        <Link href="/edit-boot" className="btn primary">Edit</Link>
+                        <Link to={`/boots/${boot._id}/edit`} className="btn primary">Edit</Link>
                         <button onClick={bootDeleteClickHandler} className="btn primary">Delete</button>
                     </div>
                 </div>

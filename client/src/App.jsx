@@ -9,6 +9,7 @@ import CreateBoot from "./components/create/CreateBoot"
 import Catalog from "./components/catalog/Catalog"
 import { useState } from "react"
 import BootDetails from "./components/details/BootDetails"
+import EditBoot from "./components/edit/EditBoots"
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
                 <Route path="/boots" element={<Catalog />} />
                 <Route path="/boots/create" element={<CreateBoot />} />
                 <Route path="/boots/:bootId/details" element={<BootDetails />} />
+                <Route path="/boots/:bootId/edit" element={<EditBoot />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
             </Routes>
