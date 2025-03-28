@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import { Link } from "react-router";
+import { UserContext } from "../../context/userContext";
 
 export default function Header() {
+    const { email } = useContext(UserContext)
     return (
         <header className="header_section">
             <div className="container-fluid">
@@ -32,31 +35,39 @@ export default function Header() {
                                         All Boots
                                     </Link>
                                 </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/boots/create">
-                                        Create Boot
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/login">
-                                        Login
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/register">
-                                        Register
-                                    </Link>
-                                </li>
-                                <li className="nav-item">
-                                    <Link className="nav-link" to="/logout">
-                                        Logout
-                                    </Link>
-                                </li>
-                                <li className="nav-item ">
-                                    <Link className="nav-link" to="/profile">
-                                        Profile
-                                    </Link>
-                                </li>
+                                {email
+                                    ? (<div id="user">
+
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to="/boots/create">
+                                                Create Boot
+                                            </Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to="/logout">
+                                                Logout
+                                            </Link>
+                                        </li>
+                                        <li className="nav-item ">
+                                            <Link className="nav-link" to="/profile">
+                                                Profile
+                                            </Link>
+                                        </li>
+                                    </div>)
+                                    : (<div id="guest">
+
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to="/login">
+                                                Login
+                                            </Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to="/register">
+                                                Register
+                                            </Link>
+                                        </li>
+                                    </div>)
+                                }
                             </ul>
                             <div className="user_option">
                                 <form className="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
