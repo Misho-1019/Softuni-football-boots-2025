@@ -13,13 +13,10 @@ import EditBoot from "./components/edit/EditBoots"
 
 
 function App() {
-    const [email, setEmail] = useState('')
+    const [authData, setAuthData] = useState({})
 
-    const userLoginHandler = (authData) => {
-        setEmail(authData.email)
-
-        console.log(authData);
-        
+    const userLoginHandler = (resultData) => {
+        setAuthData(resultData)
     }
 
     return (
