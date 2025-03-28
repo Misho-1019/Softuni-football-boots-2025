@@ -10,6 +10,7 @@ import Catalog from "./components/catalog/Catalog"
 import { useState } from "react"
 import BootDetails from "./components/details/BootDetails"
 import EditBoot from "./components/edit/EditBoots"
+import { UserContext } from "./context/userContext"
 
 
 function App() {
@@ -20,6 +21,8 @@ function App() {
     }
 
     return (
+        <UserContext.Provider value={{...authData, userLoginHandler}}>
+
         <div>
 
             <Header />
@@ -39,6 +42,7 @@ function App() {
             <Footer />
 
         </div>
+        </UserContext.Provider>
     )
 }
 
