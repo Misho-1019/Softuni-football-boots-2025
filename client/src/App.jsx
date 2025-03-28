@@ -13,6 +13,12 @@ import EditBoot from "./components/edit/EditBoots"
 
 
 function App() {
+    const [email, setEmail] = useState('')
+
+    const userLoginHandler = (email) => {
+        setEmail(email)
+    }
+
     return (
         <div>
 
@@ -24,7 +30,7 @@ function App() {
                 <Route path="/boots/create" element={<CreateBoot />} />
                 <Route path="/boots/:bootId/details" element={<BootDetails />} />
                 <Route path="/boots/:bootId/edit" element={<EditBoot />} />
-                <Route path="/login" element={<Login />} />
+                <Route path="/login" element={<Login onLogin={userLoginHandler} />} />
                 <Route path="/register" element={<Register />} />
             </Routes>
 
