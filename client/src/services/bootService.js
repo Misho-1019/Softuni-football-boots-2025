@@ -19,4 +19,7 @@ export default {
     delete(bootId) {
         return request.delete(`${baseUrl}/${bootId}`)
     },
+    edit(bootId, bootData) {
+        return request.put(`${baseUrl}/${bootId}`, { ...bootData, _id: bootId })
+    },
 }

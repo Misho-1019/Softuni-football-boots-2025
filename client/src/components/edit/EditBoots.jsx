@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import bootService from "../../services/bootService";
 
 export default function EditBoot() {
+    const navigate = useNavigate()
     const { bootId } = useParams()
     const [boot, setBoot] = useState({})
 
@@ -11,11 +12,19 @@ export default function EditBoot() {
             .then(setBoot)
     }, [bootId])
 
+    const formAction = async (formData) => {
+        const boodData = Object.fromEntries(formData)
+
+        await bootService.edit(bootId, boodData)
+        
+        navigate(`/boots/${bootId}/details`)
+    }
+
     return (
         <div className="auth-container">
             <div className="auth-box">
                 <h2>Edit Football Boot</h2>
-                <form>
+                <form action={formAction}>
                     <input type="text" id="imageUrl" name="imageUrl" placeholder="Upload a photo..." defaultValue={boot.imageUrl}/>
                     <input type="text" name="brand" placeholder="Brand" defaultValue={boot.brand} required />
                     <input type="number" name="price" placeholder="Price" defaultValue={boot.price} required />
