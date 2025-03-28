@@ -1,13 +1,14 @@
 import { useNavigate } from "react-router";
-import bootService from "../../services/bootService";
+import { useCreateBoot } from "../../api/bootApi";
 
 export default function CreateBoot() {
     const navigate = useNavigate();
+    const { create: createBoot } = useCreateBoot()
 
     const submitAction = async (formData) => {
         const bootData = Object.fromEntries(formData)
 
-        await bootService.create(bootData)
+        await createBoot(bootData)
 
         navigate('/boots')
     }
