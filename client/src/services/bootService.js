@@ -10,6 +10,9 @@ export default {
 
         return boots;
     },
+    getOne(bootId) {
+        return request.get(`${baseUrl}/${bootId}`)
+    },
     create(bootData) {
         return request.post(baseUrl, bootData)
     }

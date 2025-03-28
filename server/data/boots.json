@@ -1,11 +1,20 @@
 {
-    "e579273b-557c-4e54-93a1-44a187d88fc5": {
+    "47344a02-09ef-4477-903c-0b9da87bfefc": {
         "imageUrl": "https://th.bing.com/th/id/OIP.H7XgoTgyuwUYi5uCTXV0AwHaHa?w=181&h=181&c=7&r=0&o=5&dpr=1.3&pid=1.7",
         "brand": "Nike",
         "price": "300",
-        "material": "Flyknit ",
         "color": "Pink & White",
+        "description": "The Nike Mercurial Vapor 14 is designed for speed and agility, featuring a lightweight Flyknit upper                          and firm ground studs for ultimate traction.",
         "stud": "Firm Ground",
-        "_id": "e579273b-557c-4e54-93a1-44a187d88fc5"
+        "_id": "47344a02-09ef-4477-903c-0b9da87bfefc"
+    },
+    "aa82443d-16e3-4d8f-97b5-42a97cee82f9": {
+        "imageUrl": "https://th.bing.com/th/id/OIP.jWla7nlDlQIWHLdA5zrQ0AHaHa?pid=ImgDet&w=185&h=185&c=7&dpr=1.3",
+        "brand": "Adidas",
+        "price": "280",
+        "color": "Red, White & Black",
+        "description": "The Adidas X 17.1 football boots are designed for speed and agility, featuring a Techfit compression upper that molds to the foot for a snug, sock-like fit. The NSG (Non-Stop Grip) texture enhances ball control, while the SprintFrame outsole provides lightweight stability for explosive acceleration.",
+        "stud": "Firm Ground",
+        "_id": "aa82443d-16e3-4d8f-97b5-42a97cee82f9"
     }
 }

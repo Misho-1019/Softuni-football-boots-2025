@@ -8,6 +8,7 @@ import Register from "./components/register/Register"
 import CreateBoot from "./components/create/CreateBoot"
 import Catalog from "./components/catalog/Catalog"
 import { useState } from "react"
+import BootDetails from "./components/details/BootDetails"
 
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/boots" element={<Catalog />} />
                 <Route path="/boots/create" element={<CreateBoot />} />
+                <Route path="/boots/:bootId/details" element={<BootDetails />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/register" element={<Register />} />
             </Routes>
