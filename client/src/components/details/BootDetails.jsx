@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import bootService from "../../services/bootService";
 
 export default function BootDetails() {
+    const navigate = useNavigate()
     const [boot, setBoot] = useState({})
     const { bootId } = useParams();
 
@@ -10,6 +11,18 @@ export default function BootDetails() {
         bootService.getOne(bootId)
             .then(setBoot)
     }, [bootId])
+
+    const bootDeleteClickHandler = async () => {
+        const hasConfirmed = confirm(`Are you sure you want to delete this ${boot.brand}?`)
+
+        if (!hasConfirmed) {
+            return;
+        }
+
+        await bootService.delete(bootId)
+
+        navigate('/boots')
+    }
     
     return (
         <div className="details-container">
@@ -29,8 +42,8 @@ export default function BootDetails() {
                     </div>
                     <div className="details-actions">
                         <Link to="/boots" className="btn secondary">Back</Link>
-                        <a href="/edit-boot" className="btn primary">Edit</a>
-                        <a href="/edit-boot" className="btn primary">Delete</a>
+                        <Link href="/edit-boot" className="btn primary">Edit</Link>
+                        <button onClick={bootDeleteClickHandler} className="btn primary">Delete</button>
                     </div>
                 </div>
             </div>

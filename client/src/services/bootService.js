@@ -15,5 +15,8 @@ export default {
     },
     create(bootData) {
         return request.post(baseUrl, bootData)
-    }
+    },
+    delete(bootId) {
+        return request.delete(`${baseUrl}/${bootId}`)
+    },
 }
