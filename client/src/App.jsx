@@ -11,6 +11,7 @@ import { useState } from "react"
 import BootDetails from "./components/details/BootDetails"
 import EditBoot from "./components/edit/EditBoots"
 import { UserContext } from "./context/userContext"
+import Logout from "./components/logout/Logout"
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
                 <Route path="/boots/:bootId/edit" element={<EditBoot />} />
                 <Route path="/login" element={<Login onLogin={userLoginHandler} />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/logout" element={<Logout />} />
             </Routes>
 
             <Info />
