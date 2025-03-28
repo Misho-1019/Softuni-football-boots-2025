@@ -19,8 +19,8 @@ export default function CreateBoot() {
                     <input type="text" id="imageUrl" name="imageUrl" placeholder="Upload a photo..." />
                     <input type="text" name="brand" placeholder="Brand" required />
                     <input type="number" name="price" placeholder="Price" required />
-                    <input type="text" name="material" placeholder="Material" required />
                     <input type="text" name="color" placeholder="Color" required />
+                    <input type="text" name="description" placeholder="Description" required />
                     <input type="text" name="stud" placeholder="Stud Type" required />
                     <input type="submit" className="btn" value="Create"/>
                 </form>

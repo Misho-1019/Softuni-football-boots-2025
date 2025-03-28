@@ -7,7 +7,7 @@ export default function Catalog() {
 
     useEffect(() => {
         bootService.getAll()
-            .then([])
+            .then(setBoots)
     }, [])
 
     return (
