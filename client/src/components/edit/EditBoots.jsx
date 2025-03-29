@@ -1,21 +1,16 @@
-import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import bootService from "../../services/bootService";
+import { useBoot, useEditBoot } from "../../api/bootApi";
 
 export default function EditBoot() {
     const navigate = useNavigate()
     const { bootId } = useParams()
-    const [boot, setBoot] = useState({})
-
-    useEffect(() => {
-        bootService.getOne(bootId)
-            .then(setBoot)
-    }, [bootId])
+    const { edit } = useEditBoot()
+    const { boot } = useBoot(bootId)
 
     const formAction = async (formData) => {
         const boodData = Object.fromEntries(formData)
 
-        await bootService.edit(bootId, boodData)
+        await edit(bootId, boodData)
         
         navigate(`/boots/${bootId}/details`)
     }

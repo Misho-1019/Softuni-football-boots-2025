@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/userContext";
 import request from "../utils/request";
+import useAuth from "../hooks/useAuth";
 
 const baseUrl = 'http://localhost:3030/data/boots';
 
@@ -66,5 +67,16 @@ export const useCreateBoot = () => {
 
     return {
         create,
+    }
+}
+
+export const useEditBoot = () => {
+    const { request } = useAuth()
+
+    const edit = (bootId, bootData) =>
+        request.put(`${baseUrl}/${bootId}`, { ...bootData, id: bootId })
+
+    return {
+        edit,
     }
 }
