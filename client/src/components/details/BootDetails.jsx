@@ -1,11 +1,13 @@
 import { Link, useNavigate, useParams } from "react-router";
 import { useBoot, useDeleteBoot } from "../../api/bootApi";
+import useAuth from "../../hooks/useAuth";
 
 export default function BootDetails() {
     const navigate = useNavigate()
     const { bootId } = useParams();
     const { boot } = useBoot(bootId)
     const { deleteBoot } = useDeleteBoot()
+    const { _id: UserId } = useAuth()
 
 
     const bootDeleteClickHandler = async () => {
@@ -19,7 +21,9 @@ export default function BootDetails() {
 
         navigate('/boots')
     }
-    
+
+    const isOwner = UserId === boot._ownerId
+
     return (
         <div className="details-container">
             <div className="details-card">
@@ -36,10 +40,17 @@ export default function BootDetails() {
                         <div className="detail-item"><strong>Stud Type:</strong> {boot.stud}</div>
                         <div className="detail-item"><strong>Price:</strong> ${boot.price}</div>
                     </div>
+
                     <div className="details-actions">
                         <Link to="/boots" className="btn secondary">Back</Link>
-                        <Link to={`/boots/${boot._id}/edit`} className="btn primary">Edit</Link>
-                        <button onClick={bootDeleteClickHandler} className="btn primary">Delete</button>
+
+                        {isOwner && (
+                            <div className="btns">
+                                <Link to={`/boots/${boot._id}/edit`} className="btn primary">Edit</Link>
+                                <button onClick={bootDeleteClickHandler} className="btn primary">Delete</button>
+                            </div>
+
+                        )}
                     </div>
                 </div>
             </div>

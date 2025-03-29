@@ -291,6 +291,10 @@ a:focus {
   font-size: 2.5rem;
 }
 
+.latest {
+  padding: 50px;
+}
+
 .slider_section .detail-box h1 {
   font-size: 3.5rem;
   font-weight: bold;
@@ -320,6 +324,20 @@ a:focus {
   background-color: #ffffff;
   color: #000000;
 }
+
+/* .latest-collection {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.latest-collection img {
+  border-radius: 8px;
+} */
 
 .slider_section #carouselExampleIndicators .carousel-indicators {
   position: unset;
@@ -586,6 +604,11 @@ a:focus {
 }
 
 .details-actions {
+  display: flex;
+  gap: 15px;
+}
+
+.btns {
   display: flex;
   gap: 15px;
 }

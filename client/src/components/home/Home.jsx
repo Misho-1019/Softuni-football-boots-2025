@@ -25,8 +25,9 @@ export default function Home() {
                                                 recommendations—all in one place. Step up your game with the right pair today!
                                             </p>
                                             <div className="">
-                                                <Link to="/register">Register</Link>
+                                                <Link to="/register">Sign Up</Link>
                                             </div>
+                                            <h3 className="latest">Our Latest Collection</h3>
                                         </div>
                                     </div>
                                 </div>
