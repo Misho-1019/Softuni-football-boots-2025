@@ -1,11 +1,11 @@
 import { Link, useNavigate, useParams } from "react-router";
-import bootService from "../../services/bootService";
-import { useBoot } from "../../api/bootApi";
+import { useBoot, useDeleteBoot } from "../../api/bootApi";
 
 export default function BootDetails() {
     const navigate = useNavigate()
     const { bootId } = useParams();
     const { boot } = useBoot(bootId)
+    const { deleteBoot } = useDeleteBoot()
 
 
     const bootDeleteClickHandler = async () => {
@@ -15,7 +15,7 @@ export default function BootDetails() {
             return;
         }
 
-        await bootService.delete(bootId)
+        await deleteBoot(bootId)
 
         navigate('/boots')
     }

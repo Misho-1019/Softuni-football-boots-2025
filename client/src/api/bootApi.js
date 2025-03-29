@@ -80,3 +80,14 @@ export const useEditBoot = () => {
         edit,
     }
 }
+
+export const useDeleteBoot = () => {
+    const { request } = useAuth()
+
+    const deleteBoot = (bootId) =>
+        request.delete(`${baseUrl}/${bootId}`)
+
+    return {
+        deleteBoot,
+    }
+}
