@@ -39,6 +39,19 @@ export const useBoots = () => {
     }
 }
 
+export const useBoot = (bootId) => {
+    const [boot, setBoot] = useState({})
+
+    useEffect(() => {
+        request.get(`${baseUrl}/${bootId}`)
+            .then(setBoot)
+    }, [bootId])
+
+    return {
+        boot,
+    }
+}
+
 export const useCreateBoot = () => {
     const { accessToken } = useContext(UserContext)
 

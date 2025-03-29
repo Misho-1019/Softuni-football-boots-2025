@@ -1,16 +1,12 @@
-import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router";
 import bootService from "../../services/bootService";
+import { useBoot } from "../../api/bootApi";
 
 export default function BootDetails() {
     const navigate = useNavigate()
-    const [boot, setBoot] = useState({})
     const { bootId } = useParams();
+    const { boot } = useBoot(bootId)
 
-    useEffect(() => {
-        bootService.getOne(bootId)
-            .then(setBoot)
-    }, [bootId])
 
     const bootDeleteClickHandler = async () => {
         const hasConfirmed = confirm(`Are you sure you want to delete this ${boot.brand}?`)
