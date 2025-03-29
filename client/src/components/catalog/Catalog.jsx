@@ -1,14 +1,8 @@
-import { useEffect, useState } from "react";
-import bootService from "../../services/bootService";
 import BootItem from "./bootItem/BootItem";
+import { useBoots } from "../../api/bootApi";
 
 export default function Catalog() {
-    const [boots, setBoots] = useState([])
-
-    useEffect(() => {
-        bootService.getAll()
-            .then(setBoots)
-    }, [])
+    const { boots } = useBoots()
 
     return (
         <div className="catalog-container">

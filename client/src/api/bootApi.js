@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../context/userContext";
 import request from "../utils/request";
 
@@ -24,6 +24,19 @@ export default {
     edit(bootId, bootData) {
         return request.put(`${baseUrl}/${bootId}`, { ...bootData, _id: bootId })
     },
+}
+
+export const useBoots = () => {
+    const [boots, setBoots] = useState([])
+
+    useEffect(() => {
+        request.get(baseUrl)
+            .then(setBoots)
+    }, [])
+
+    return {
+        boots
+    }
 }
 
 export const useCreateBoot = () => {
