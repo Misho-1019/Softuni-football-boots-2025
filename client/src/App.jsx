@@ -11,6 +11,7 @@ import BootDetails from "./components/details/BootDetails"
 import EditBoot from "./components/edit/EditBoots"
 import Logout from "./components/logout/Logout"
 import { UserProvider } from "./providers/UserProvider"
+import AuthGuard from "./components/guards/AuthGuard"
 
 
 function App() {
@@ -24,12 +25,14 @@ function App() {
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/boots" element={<Catalog />} />
-                    <Route path="/boots/create" element={<CreateBoot />} />
                     <Route path="/boots/:bootId/details" element={<BootDetails />} />
-                    <Route path="/boots/:bootId/edit" element={<EditBoot />} />
+                    <Route element={<AuthGuard />}>
+                        <Route path="/boots/create" element={<CreateBoot />} />
+                        <Route path="/boots/:bootId/edit" element={<EditBoot />} />
+                        <Route path="/logout" element={<Logout />} />
+                    </Route>
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
-                    <Route path="/logout" element={<Logout />} />
                 </Routes>
 
                 <Info />
