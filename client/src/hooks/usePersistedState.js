@@ -1,5 +1,7 @@
+import { useState } from "react";
+
 export default function usePersistedState(stateKey, initialState) {
-    const [state, setState] = (() => {
+    const [state, setState] = useState(() => {
         const persistedState = localStorage.getItem(stateKey)
 
         if (!persistedState) {

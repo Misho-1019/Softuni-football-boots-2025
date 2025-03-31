@@ -1,9 +1,8 @@
-import { useContext } from "react";
 import { Link } from "react-router";
-import { UserContext } from "../../context/userContext";
+import { useUserContext } from "../../context/userContext";
 
 export default function Header() {
-    const { email } = useContext(UserContext)
+    const { email } = useUserContext()
     return (
         <header className="header_section">
             <div className="container-fluid">

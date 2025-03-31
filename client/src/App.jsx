@@ -9,46 +9,35 @@ import CreateBoot from "./components/create/CreateBoot"
 import Catalog from "./components/catalog/Catalog"
 import BootDetails from "./components/details/BootDetails"
 import EditBoot from "./components/edit/EditBoots"
-import { UserContext } from "./context/userContext"
 import Logout from "./components/logout/Logout"
-import usePersistedState from "./hooks/usePersistedState"
+import { UserProvider } from "./providers/UserProvider"
 
 
 function App() {
-    const [authData, setAuthData] = usePersistedState('auth', {})
-
-    const userLoginHandler = (resultData) => {
-        setAuthData(resultData)
-    }
-
-    const userLogoutHandler = () => {
-        setAuthData({})
-    }
 
     return (
-        <UserContext.Provider value={{...authData, userLoginHandler, userLogoutHandler}}>
+        <UserProvider>
+            <div>
 
-        <div>
+                <Header />
 
-            <Header />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/boots" element={<Catalog />} />
+                    <Route path="/boots/create" element={<CreateBoot />} />
+                    <Route path="/boots/:bootId/details" element={<BootDetails />} />
+                    <Route path="/boots/:bootId/edit" element={<EditBoot />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                    <Route path="/logout" element={<Logout />} />
+                </Routes>
 
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/boots" element={<Catalog />} />
-                <Route path="/boots/create" element={<CreateBoot />} />
-                <Route path="/boots/:bootId/details" element={<BootDetails />} />
-                <Route path="/boots/:bootId/edit" element={<EditBoot />} />
-                <Route path="/login" element={<Login onLogin={userLoginHandler} />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/logout" element={<Logout />} />
-            </Routes>
+                <Info />
 
-            <Info />
+                <Footer />
 
-            <Footer />
-
-        </div>
-        </UserContext.Provider>
+            </div>
+        </UserProvider>
     )
 }
 
