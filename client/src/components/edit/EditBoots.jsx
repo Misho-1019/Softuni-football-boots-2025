@@ -1,8 +1,10 @@
-import { useNavigate, useParams } from "react-router";
+import { Navigate, useNavigate, useParams } from "react-router";
 import { useBoot, useEditBoot } from "../../api/bootApi";
+import useAuth from "../../hooks/useAuth";
 
 export default function EditBoot() {
     const navigate = useNavigate()
+    const { userId } = useAuth()
     const { bootId } = useParams()
     const { edit } = useEditBoot()
     const { boot } = useBoot(bootId)
@@ -13,6 +15,12 @@ export default function EditBoot() {
         await edit(bootId, boodData)
         
         navigate(`/boots/${bootId}/details`)
+    }
+
+    const isOwner = userId === boot._ownerId
+
+    if (!isOwner) {
+        return <Navigate to='/boots' />
     }
 
     return (
