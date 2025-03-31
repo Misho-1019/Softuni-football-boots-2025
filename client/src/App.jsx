@@ -12,6 +12,7 @@ import EditBoot from "./components/edit/EditBoots"
 import Logout from "./components/logout/Logout"
 import { UserProvider } from "./providers/UserProvider"
 import AuthGuard from "./components/guards/AuthGuard"
+import GuestGuard from "./components/guards/GuestGuard"
 
 
 function App() {
@@ -31,8 +32,10 @@ function App() {
                         <Route path="/boots/:bootId/edit" element={<EditBoot />} />
                         <Route path="/logout" element={<Logout />} />
                     </Route>
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
+                    <Route element={<GuestGuard />}>
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                    </Route>
                 </Routes>
 
                 <Info />
