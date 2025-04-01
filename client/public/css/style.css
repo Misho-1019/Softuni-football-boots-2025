@@ -531,8 +531,27 @@ a:focus {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #ffffff;
+  background-image: url(../images/home.jpeg);
+  background-size: cover;
+  background-attachment: fixed;  
+  position: relative;
   padding: 40px 20px;
+}
+
+.details-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay with opacity */
+  z-index: 0; /* Ensure the overlay is below the content */
+}
+
+.details-container > * {
+  position: relative;
+  z-index: 1; /* Content will stay above the pseudo-element */
 }
 
 .details-card {
@@ -789,17 +808,30 @@ a:focus {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  padding: 40px 20px;
-  background-color: #000000;
+  padding: 120px 100px;
+  background-image: url(../images/home.jpeg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.profile-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark overlay with opacity */
+  z-index: 0; /* Ensure the overlay is below the content */
 }
 
 /* Profile Card */
 .profile-card {
-  background-color: #111;
+  background-color: #454545;
   color: #ffffff;
   border-radius: 12px;
   padding: 40px;
-  max-width: 400px;
+  max-width: 800px;
   width: 100%;
   box-shadow: 0px 4px 12px rgba(255, 41, 83, 0.3);
   text-align: center;

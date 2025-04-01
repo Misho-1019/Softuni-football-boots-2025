@@ -1,4 +1,10 @@
+import useAuth from "../../hooks/useAuth"
+
 export default function Profile() {
+    const { email, accessToken, _id, username } = useAuth()
+
+    console.log(email, accessToken, _id, username);
+    
     return (
         <div className="profile-container">
             <div className="profile-card">
