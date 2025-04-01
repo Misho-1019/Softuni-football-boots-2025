@@ -852,6 +852,12 @@ a:focus {
   margin-bottom: 15px;
 }
 
+.password-group {
+  text-align: left;
+  margin-bottom: 15px;
+  position: relative;
+}
+
 /* Label */
 .label {
   display: block;
@@ -859,6 +865,35 @@ a:focus {
   font-weight: bold;
   color: #ddd;
   margin-bottom: 5px;
+}
+
+.password-label {
+  display: block;
+  font-size: 14px;
+  font-weight: bold;
+  color: #ffffff;
+  margin-bottom: 5px;
+}
+
+.show-password {
+  display: flex;
+  gap: 5px;
+}
+
+.show-password > button {
+  padding: 12px;
+  background-color: #ff2953;
+  border: none;
+  color: #ffffff;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-transform: uppercase;
+  transition: background-color 0.3s;
+}
+
+.show-password > button:hover {
+  background-color: #e02449;
 }
 
 /* Input Field */
