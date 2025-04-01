@@ -13,6 +13,7 @@ import Logout from "./components/logout/Logout"
 import { UserProvider } from "./providers/UserProvider"
 import AuthGuard from "./components/guards/AuthGuard"
 import GuestGuard from "./components/guards/GuestGuard"
+import Profile from "./components/profile/Profile"
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
                         <Route path="/boots/create" element={<CreateBoot />} />
                         <Route path="/boots/:bootId/edit" element={<EditBoot />} />
                         <Route path="/logout" element={<Logout />} />
+                        <Route path="/profile" element={<Profile />} />
                     </Route>
                     <Route element={<GuestGuard />}>
                         <Route path="/login" element={<Login />} />

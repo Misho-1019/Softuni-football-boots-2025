@@ -42,14 +42,14 @@ export default function Header() {
                                                 Create Boot
                                             </Link>
                                         </li>
-                                        <li className="nav-item">
-                                            <Link className="nav-link" to="/logout">
-                                                Logout
-                                            </Link>
-                                        </li>
                                         <li className="nav-item ">
                                             <Link className="nav-link" to="/profile">
                                                 Profile
+                                            </Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link className="nav-link" to="/logout">
+                                                Logout
                                             </Link>
                                         </li>
                                     </div>)
