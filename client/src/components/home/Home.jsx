@@ -27,7 +27,6 @@ export default function Home() {
                                             <div className="">
                                                 <Link to="/register">Sign Up</Link>
                                             </div>
-                                            <h3 className="latest">Our Latest Collection</h3>
                                         </div>
                                     </div>
                                 </div>

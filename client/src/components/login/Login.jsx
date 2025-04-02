@@ -26,7 +26,7 @@ export default function Login() {
             toast.error(error.message, {
                 position: 'top-center',
                 autoClose: 2000,
-            })
+            })  
         }
     }
 
