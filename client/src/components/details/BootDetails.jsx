@@ -1,6 +1,7 @@
 import { Link, useNavigate, useParams } from "react-router";
 import { useBoot, useDeleteBoot } from "../../api/bootApi";
 import useAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 export default function BootDetails() {
     const navigate = useNavigate()
@@ -17,9 +18,23 @@ export default function BootDetails() {
             return;
         }
 
-        await deleteBoot(bootId)
+        try {
+            await deleteBoot(bootId)
 
-        navigate('/boots')
+            toast.success('Successfully deleted!', {
+                position: 'top-center',
+                autoClose: 2000,
+            })
+            
+            navigate('/boots')
+        } catch (error) {
+            toast.error(error.message, {
+                position: 'top-center',
+                autoClose: 2000,
+            })
+        }
+
+
     }
 
     const isOwner = UserId === boot._ownerId

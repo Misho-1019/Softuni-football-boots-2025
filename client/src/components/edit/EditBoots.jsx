@@ -1,6 +1,7 @@
 import { Navigate, useNavigate, useParams } from "react-router";
 import { useBoot, useEditBoot } from "../../api/bootApi";
 import useAuth from "../../hooks/useAuth";
+import { toast } from "react-toastify";
 
 export default function EditBoot() {
     const navigate = useNavigate()
@@ -10,18 +11,32 @@ export default function EditBoot() {
     const { boot } = useBoot(bootId)
 
     const formAction = async (formData) => {
-        const boodData = Object.fromEntries(formData)
+        try {
+            const boodData = Object.fromEntries(formData)
+            
+            await edit(bootId, boodData)
 
-        await edit(bootId, boodData)
+            toast.success('Successfully edited!', {
+                position: 'top-center',
+                autoClose: 2000,
+            })
+            
+            navigate(`/boots/${bootId}/details`)
+        } catch (error) {
+            toast.error(error.message, {
+                position: 'top-center',
+                autoClose: 2000
+            })
+        }
         
-        navigate(`/boots/${bootId}/details`)
+        
     }
 
-    const isOwner = userId === boot._ownerId
+    // const isOwner = userId === boot._ownerId
 
-    if (!isOwner) {
-        return <Navigate to='/boots' />
-    }
+    // if (!isOwner) {
+    //     return <Navigate to='/boots' />
+    // }
 
     return (
         <div className="auth-container">

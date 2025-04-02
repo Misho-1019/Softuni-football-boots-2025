@@ -2,7 +2,7 @@ import { useActionState, useContext } from "react";
 import { Link, useNavigate } from "react-router";
 import { useLogin } from "../../api/authApi";
 import { UserContext } from "../../context/userContext";
-
+import { toast } from "react-toastify";
 
 export default function Login() {
     const navigate = useNavigate();
@@ -12,13 +12,22 @@ export default function Login() {
     const loginHandler = async (_, formData) => {
         const values = Object.fromEntries(formData)
 
-        const authData = await login(values.email, values.password)
-
-        userLoginHandler(authData)      
-
-        navigate('/boots')
-
-        return values
+        try {
+            const authData = await login(values.email, values.password)
+            userLoginHandler(authData) 
+            
+            toast.success('Successful login!', { 
+                position: 'top-center',
+                autoClose: 2000 
+            })
+            
+            navigate('/boots')
+        } catch (error) {
+            toast.error(error.message, {
+                position: 'top-center',
+                autoClose: 2000,
+            })
+        }
     }
 
     const [_, loginAction, isPending] = useActionState(loginHandler, { email: '', password: '' })

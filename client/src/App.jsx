@@ -14,6 +14,7 @@ import { UserProvider } from "./providers/UserProvider"
 import AuthGuard from "./components/guards/AuthGuard"
 import GuestGuard from "./components/guards/GuestGuard"
 import Profile from "./components/profile/Profile"
+import { ToastContainer } from "react-toastify"
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
 
                 <Footer />
 
+                <ToastContainer />
             </div>
         </UserProvider>
     )

@@ -1,14 +1,27 @@
 import { useNavigate } from "react-router";
 import { useCreateBoot } from "../../api/bootApi";
+import { toast } from "react-toastify";
 
 export default function CreateBoot() {
     const navigate = useNavigate();
     const { create: createBoot } = useCreateBoot()
 
     const submitAction = async (formData) => {
-        const bootData = Object.fromEntries(formData)
+        try {
+            const bootData = Object.fromEntries(formData)
+            
+            await createBoot(bootData)
 
-        await createBoot(bootData)
+            toast.success('Successfully created!', {
+                position: 'top-center',
+                autoClose: 2000,
+            })
+        } catch (error) {
+            toast.error(error.message, {
+                position: 'top-center',
+                autoClose: 2000,
+            })
+        }
 
         navigate('/boots')
     }

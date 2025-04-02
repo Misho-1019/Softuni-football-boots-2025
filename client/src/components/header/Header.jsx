@@ -68,14 +68,6 @@ export default function Header() {
                                     </div>)
                                 }
                             </ul>
-                            <div className="user_option">
-                                <form className="form-inline my-2 my-lg-0 ml-0 ml-lg-4 mb-3 mb-lg-0">
-                                    <button
-                                        className="btn  my-2 my-sm-0 nav_search-btn"
-                                        type="submit"
-                                    />
-                                </form>
-                            </div>
                         </div>
                     </div>
                 </nav>
