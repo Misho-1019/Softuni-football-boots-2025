@@ -2,6 +2,8 @@ import { Link, useNavigate, useParams } from "react-router";
 import { useBoot, useDeleteBoot } from "../../api/bootApi";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
+import { getTotalLikes, hasUserLiked, useLikeBoot } from "../../api/likeApi";
 
 export default function BootDetails() {
     const navigate = useNavigate()
@@ -9,7 +11,29 @@ export default function BootDetails() {
     const { boot } = useBoot(bootId)
     const { deleteBoot } = useDeleteBoot()
     const { _id: UserId } = useAuth()
+    const { like } = useLikeBoot()
 
+    const [likesCount, setLikesCount] = useState(0)
+    const [userHasLiked, setUserHasLiked] = useState(false)
+
+    const isOwner = UserId === boot._ownerId
+
+    useEffect(() => {
+        if (boot?._id) {
+            getTotalLikes(boot._id).then(setLikesCount)
+            hasUserLiked(boot._id, UserId).then(setUserHasLiked)
+        }
+    }, [boot, UserId])
+
+    const clickLikeButton = async () => {
+        try {
+            await like(boot._id)
+            setLikesCount((prev) => prev + 1)
+            setUserHasLiked(true)
+        } catch (error) {
+            toast.error(`Failed to like ${boot.brand} brand!`, { position: 'top-center', autoClose: 2000 })
+        }
+    }
 
     const bootDeleteClickHandler = async () => {
         const hasConfirmed = confirm(`Are you sure you want to delete this ${boot.brand}?`)
@@ -25,7 +49,7 @@ export default function BootDetails() {
                 position: 'top-center',
                 autoClose: 2000,
             })
-            
+
             navigate('/boots')
         } catch (error) {
             toast.error(error.message, {
@@ -33,11 +57,7 @@ export default function BootDetails() {
                 autoClose: 2000,
             })
         }
-
-
     }
-
-    const isOwner = UserId === boot._ownerId
 
     return (
         <div className="details-container">
@@ -59,12 +79,14 @@ export default function BootDetails() {
                     <div className="details-actions">
                         <Link to="/boots" className="btn secondary">Back</Link>
 
-                        {isOwner && (
+                        {isOwner ? (
                             <div className="btns">
                                 <Link to={`/boots/${boot._id}/edit`} className="btn primary">Edit</Link>
                                 <button onClick={bootDeleteClickHandler} className="btn primary">Delete</button>
                             </div>
 
+                        ) : (
+                            <button onClick={userHasLiked ? null : clickLikeButton} className="btn primary">Like: {likesCount}</button>
                         )}
                     </div>
                 </div>
