@@ -26,35 +26,6 @@ export default function Register() {
         resolver: yupResolver(schema),
     })
 
-    // const registerHandler = async (formData) => {
-    //     const { username, email, password } = Object.fromEntries(formData)
-
-    //     const confirmPassword = formData.get('confirm-password')
-
-    //     if (password !== confirmPassword) {
-    //         console.log('Password mismatch!');
-            
-    //         return;
-    //     }
-
-    //     try {
-    //         const authData = await registerUser(username, email, password)
-    //         userLoginHandler(authData)
-
-    //         toast.success('Successful register!', {
-    //             position: 'top-center',
-    //             autoClose: 2000,
-    //         })
-
-    //         navigate('/boots')
-    //     } catch (error) {
-    //         toast.error(error.message, {
-    //             position: 'top-center',
-    //             autoClose: 2000,
-    //         })
-    //     }
-    // }
-
     const registerHandler = async ({username, email, password}) => {
         try {
             const authData = await registerUser(username, email, password)
@@ -73,17 +44,6 @@ export default function Register() {
             })
         }
     }
-
-    // const onError = (formErrors) => {
-    //     const firstError = Object.values(formErrors)[0]
-
-    //     if (firstError?.message) {
-    //         toast.error(firstError.message, {
-    //             position: 'top-center',
-    //             autoClose: 2000,
-    //         })
-    //     }
-    // }
 
     return (
         <div className="auth-container">

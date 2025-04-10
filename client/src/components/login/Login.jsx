@@ -35,27 +35,6 @@ export default function Login() {
         }
     }, [])
 
-    // const loginHandler = async (_, formData) => {
-    //     const values = Object.fromEntries(formData)
-
-    //     try {
-    //         const authData = await login(values.email, values.password)
-    //         userLoginHandler(authData) 
-            
-    //         toast.success('Successful login!', { 
-    //             position: 'top-center',
-    //             autoClose: 2000 
-    //         })
-            
-    //         navigate('/boots')
-    //     } catch (error) {
-    //         toast.error(error.message, {
-    //             position: 'top-center',
-    //             autoClose: 2000,
-    //         })  
-    //     }
-    // }
-
     const loginHandler = async (data) => {
 
         if (abortControllerRef.current) {
@@ -87,16 +66,6 @@ export default function Login() {
         }
     }
 
-    // const onError = (errors) => {
-    //     const firstError = Object.values(errors)[0]
-
-    //     if (firstError?.message) {
-    //         toast.error(firstError.message, {
-    //             position: "top-center",
-    //             autoClose: 2000,
-    //         })
-    //     }
-    // }
     return (
         <div className="auth-container">
             <div className="auth-box">
