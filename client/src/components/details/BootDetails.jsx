@@ -88,8 +88,8 @@ export default function BootDetails() {
                         ) : (
                             <button onClick={userHasLiked ? null : clickLikeButton} className="btn primary">Like: {likesCount}</button>
                         )}
-                        
-                        <Link to={`/comments/${boot._id}`} className="btn primary">
+
+                        <Link to={`/boots/${boot._id}/comments`} className="btn primary">
                             Reviews
                         </Link>
                     </div>

@@ -15,6 +15,7 @@ import AuthGuard from "./components/guards/AuthGuard"
 import GuestGuard from "./components/guards/GuestGuard"
 import Profile from "./components/profile/Profile"
 import { ToastContainer } from "react-toastify"
+import CommentSection from "./components/comment/CommentSection"
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/boots" element={<Catalog />} />
                     <Route path="/boots/:bootId/details" element={<BootDetails />} />
+                    <Route path="/boots/:bootId/comments" element={<CommentSection />} />
                     <Route element={<AuthGuard />}>
                         <Route path="/boots/create" element={<CreateBoot />} />
                         <Route path="/boots/:bootId/edit" element={<EditBoot />} />
