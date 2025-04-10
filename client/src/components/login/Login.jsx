@@ -8,7 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 const schema = yup.object({
-    email: yup.string().email('Invalid email format!'),
+    email: yup.string().email('Invalid email format!').required('Email is required!'),
     password: yup.string().min(6, 'Password must be at least 6 characters!'),
 })
 
@@ -20,7 +20,7 @@ export default function Login() {
     const {
         register,
         handleSubmit,
-        formState: { isSubmitting },
+        formState: { errors, isSubmitting },
     } = useForm({
         resolver: yupResolver(schema),
     })
@@ -64,23 +64,27 @@ export default function Login() {
         }
     }
 
-    const onError = (errors) => {
-        const firstError = Object.values(errors)[0]
+    // const onError = (errors) => {
+    //     const firstError = Object.values(errors)[0]
 
-        if (firstError?.message) {
-            toast.error(firstError.message, {
-                position: "top-center",
-                autoClose: 2000,
-            })
-        }
-    }
+    //     if (firstError?.message) {
+    //         toast.error(firstError.message, {
+    //             position: "top-center",
+    //             autoClose: 2000,
+    //         })
+    //     }
+    // }
     return (
         <div className="auth-container">
             <div className="auth-box">
                 <h2>Login</h2>
-                <form onSubmit={handleSubmit(loginHandler, onError)} noValidate>
+                <form onSubmit={handleSubmit(loginHandler)} noValidate>
                     <input type="email" name="email" {...register('email')} placeholder="Email" />
+                    {errors.email && <p className='error'>{errors.email.message}</p>}
+                    
                     <input type="password" name="password" {...register('password')} placeholder="Password" />
+                    {errors.password && <p className='error'>{errors.password.message}</p>}
+
                     <button type="submit" disabled={isSubmitting} >Login</button>
                 </form>
                 <p>Don't have an account? <Link href="/register">Sign up</Link></p>
