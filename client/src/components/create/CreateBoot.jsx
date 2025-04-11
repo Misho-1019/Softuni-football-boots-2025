@@ -9,7 +9,7 @@ export default function CreateBoot() {
     const submitAction = async (formData) => {
         try {
             const bootData = Object.fromEntries(formData)
-            
+
             await createBoot(bootData)
 
             toast.success('Successfully created!', {
@@ -25,6 +25,7 @@ export default function CreateBoot() {
 
         navigate('/boots')
     }
+
     return (
         <div className="auth-container">
             <div className="auth-box">
@@ -35,10 +36,17 @@ export default function CreateBoot() {
                     <input type="number" name="price" placeholder="Price" required />
                     <input type="text" name="color" placeholder="Color" required />
                     <input type="text" name="description" placeholder="Description" required />
-                    <input type="text" name="stud" placeholder="Stud Type" required />
-                    <input type="submit" className="btn" value="Create"/>
+
+                    <select name="stud" className="input" required>
+                        <option value="">Select Ground Type</option>
+                        <option value="Artificial Grass">Artificial Grass</option>
+                        <option value="Firm Ground">Firm Ground</option>
+                    </select>
+
+                    <input type="submit" className="btn" value="Create" />
                 </form>
             </div>
         </div>
     );
+
 }

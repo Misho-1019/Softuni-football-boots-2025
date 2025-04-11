@@ -72,7 +72,7 @@ export default function BootDetails() {
                     </p>
                     <div className="details-grid">
                         <div className="detail-item"><strong>Color:</strong> {boot.color}</div>
-                        <div className="detail-item"><strong>Stud Type:</strong> {boot.stud}</div>
+                        <div className="detail-item"><strong>Ground Type:</strong> {boot.stud}</div>
                         <div className="detail-item"><strong>Price:</strong> ${boot.price}</div>
                     </div>
 
