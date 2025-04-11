@@ -15,6 +15,7 @@ function commentReducer(state, action) {
 }
 
 export const useComments = (bootId) => {
+    const { request, accessToken } = useAuth()
     const [comments, dispatch] = useReducer(commentReducer, [])
 
     useEffect(() => {
@@ -23,8 +24,15 @@ export const useComments = (bootId) => {
             load: `author=_ownerId:users`,
         })
 
-        .then(result => dispatch({ type: 'GET_ALL', payload: result }))
-    })
+        const options = {
+            headers: {
+                'X-Authorization': accessToken,
+            }
+        }
+
+        request.get(`${baseUrl}?${searchParams.toString()}`, null, options)
+            .then(result => dispatch({ type: 'GET_ALL', payload: result }))
+    }, [bootId, accessToken])
 
     return {
         comments,
@@ -41,7 +49,7 @@ export const useCreateComment = () => {
             comment,
         }
 
-        request.post(baseUrl, commentData)
+        return request.post(baseUrl, commentData)
     }
 
     return {

@@ -1,18 +1,21 @@
-import { useContext } from "react";
-import { UserContext } from "../../context/userContext";
+import { useOptimistic } from "react";
 import { useParams } from "react-router";
 import { useComments, useCreateComment } from "../../api/commentApi";
 import useAuth from "../../hooks/useAuth";
+import { v4 as uuid } from "uuid";
 
 export default function CommentSection() {
-    const { username, _id: userId } = useAuth()
+    const { username, userId } = useAuth()
     // const { username } = useContext(UserContext)
     const { bootId } = useParams()
     const { comments, addComment } = useComments(bootId)
     const { create } = useCreateComment()
+    const [optimisticComments, setOptimisticComments] = useOptimistic(comments)
 
 
-    const commentCreateHandler = async (comment) => {
+    const commentCreateHandler = async (formData) => {
+        const comment = formData.get('comment')
+
         const newOptimisticComment = {
             _id: uuid(),
             _ownerId: userId,
@@ -24,23 +27,18 @@ export default function CommentSection() {
             }
         }
 
-        setOptimisticComments(newOptimisticComment)
+        setOptimisticComments((optimisticState) => [...optimisticState, newOptimisticComment])
 
         const commentResult = await create(bootId, comment)
 
         addComment({...commentResult, author: { username }})
     }
 
-    const commentAction = async (formData) => {
-        const comment = formData.get('comment')
-
-        commentCreateHandler(comment)
-    }
     return (
         <div className="comment-container">
             <div className="comment-box">
                 <h2 className="comment-heading">Reviews</h2>
-                <form action={commentAction}>
+                <form action={commentCreateHandler}>
                     <textarea
                         className="comment-input"
                         name="comment"
@@ -53,10 +51,10 @@ export default function CommentSection() {
                 </form>
 
                 <div className="comment-list">
-                    {comments.length > 0
-                        ? comments.map(({ _id, _ownerId, comment }) => (
-                            <div key={_id} className="comment-item">
-                                <p>{_ownerId}: {comment}</p>
+                    {optimisticComments.length > 0
+                        ? optimisticComments.map(({ _id, comment, pending, author }) => (
+                            <div key={_id} className="comment-item" style={{ backgroundColor: pending ? 'lightgray' : '' }}>
+                                <p>{author.username}: {comment}</p>
                             </div>
                         )) : <p>No Reviews</p>
                     }
