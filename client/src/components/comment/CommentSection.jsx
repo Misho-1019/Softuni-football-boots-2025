@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/userContext";
 import { useParams } from "react-router";
 import commentService from "../../services/commentService";
@@ -6,14 +6,24 @@ import commentService from "../../services/commentService";
 export default function CommentSection() {
     const { username } = useContext(UserContext)
     const { bootId } = useParams()
+    const [comments, setComments] = useState([]);
+
+    useEffect(() => {
+        commentService.getAll(bootId)
+            .then(setComments)
+    }, [bootId])
+
+    const commentCreateHandler = (newComment) => {
+        setComments(state => [...state, newComment])
+    }
 
     const commentAction = async (formData) => {
         const comment = formData.get('comment')
 
         const createComment = await commentService.create(username, bootId, comment)
-        
-        console.log(createComment);
-        
+
+        commentCreateHandler(createComment)
+
     }
     return (
         <div className="comment-container">
@@ -32,12 +42,13 @@ export default function CommentSection() {
                 </form>
 
                 <div className="comment-list">
-                    <div className="comment-item">
-                        <p>This is a sample comment.</p>
-                    </div>
-                    <div className="comment-item">
-                        <p>Another comment goes here.</p>
-                    </div>
+                    {comments.length > 0
+                        ? comments.map(({ _id, username, comment }) => (
+                            <div key={_id} className="comment-item">
+                                <p>{username}: {comment}</p>
+                            </div>
+                        )) : <p>No Reviews</p>
+                    }
                 </div>
             </div>
         </div>
