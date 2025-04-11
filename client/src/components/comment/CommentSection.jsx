@@ -6,16 +6,14 @@ import { useComments, useCreateComment } from "../../api/commentApi";
 export default function CommentSection() {
     const { username } = useContext(UserContext)
     const { bootId } = useParams()
-    const { comments, setComments } = useComments(bootId)
+    const { comments, addComment } = useComments(bootId)
     const { create } = useCreateComment()  
-
-    console.log(comments);
     
 
     const commentCreateHandler = async (comment) => {
-       const newComment = await create(bootId, comment)
+       const commentResult = await create(bootId, comment)
 
-       setComments(state => [...state, newComment])
+       addComment(commentResult)
     }
 
     const commentAction = async (formData) => {
