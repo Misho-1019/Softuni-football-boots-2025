@@ -6,7 +6,6 @@ import { v4 as uuid } from "uuid";
 
 export default function CommentSection() {
     const { username, userId } = useAuth()
-    // const { username } = useContext(UserContext)
     const { bootId } = useParams()
     const { comments, addComment } = useComments(bootId)
     const { create } = useCreateComment()
@@ -38,7 +37,7 @@ export default function CommentSection() {
         <div className="comment-container">
             <div className="comment-box">
                 <h2 className="comment-heading">Reviews</h2>
-                <form action={commentCreateHandler}>
+                { userId ? (<form action={commentCreateHandler}>
                     <textarea
                         className="comment-input"
                         name="comment"
@@ -48,7 +47,7 @@ export default function CommentSection() {
                     <button type="submit" className="btn primary">
                         Post Review
                     </button>
-                </form>
+                </form>) : ''}
 
                 <div className="comment-list">
                     {optimisticComments.length > 0
@@ -56,7 +55,7 @@ export default function CommentSection() {
                             <div key={_id} className="comment-item" style={{ backgroundColor: pending ? 'lightgray' : '' }}>
                                 <p>{author.username}: {comment}</p>
                             </div>
-                        )) : <p>No Reviews</p>
+                        )) : <p>No Reviews Yet</p>
                     }
                 </div>
             </div>

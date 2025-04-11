@@ -30,12 +30,12 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/boots" element={<Catalog />} />
                     <Route path="/boots/:bootId/details" element={<BootDetails />} />
-                    <Route path="/boots/:bootId/comments" element={<CommentSection />} />
                     <Route element={<AuthGuard />}>
                         <Route path="/boots/create" element={<CreateBoot />} />
                         <Route path="/boots/:bootId/edit" element={<EditBoot />} />
                         <Route path="/logout" element={<Logout />} />
                         <Route path="/profile" element={<Profile />} />
+                        <Route path="/boots/:bootId/comments" element={<CommentSection />} />
                     </Route>
                     <Route element={<GuestGuard />}>
                         <Route path="/login" element={<Login />} />

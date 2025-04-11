@@ -89,9 +89,9 @@ export default function BootDetails() {
                             <button onClick={userHasLiked ? null : clickLikeButton} className="btn primary">Like: {likesCount}</button>
                         )}
 
-                        <Link to={`/boots/${boot._id}/comments`} className="btn primary">
-                            Reviews
-                        </Link>
+                        {UserId && !isOwner && (
+                            <Link to={`/boots/${boot._id}/comments`} className="btn primary">Reviews</Link>
+                        )}
                     </div>
                 </div>
             </div>

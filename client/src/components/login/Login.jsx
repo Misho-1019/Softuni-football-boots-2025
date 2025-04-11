@@ -79,7 +79,7 @@ export default function Login() {
 
                     <button type="submit" disabled={isSubmitting} >Login</button>
                 </form>
-                <p>Don't have an account? <Link href="/register">Sign up</Link></p>
+                <p>Don't have an account? <Link to="/register">Sign up</Link></p>
             </div>
         </div>
     );
