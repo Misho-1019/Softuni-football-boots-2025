@@ -1,28 +1,26 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { UserContext } from "../../context/userContext";
 import { useParams } from "react-router";
-import commentService from "../../services/commentService";
+import { useComments, useCreateComment } from "../../api/commentApi";
 
 export default function CommentSection() {
     const { username } = useContext(UserContext)
     const { bootId } = useParams()
     const [comments, setComments] = useState([]);
+    const { comments: allComments } = useComments(bootId)
+    const { create } = useCreateComment()
 
-    useEffect(() => {
-        commentService.getAll(bootId)
-            .then(setComments)
-    }, [bootId])
+    console.log(allComments);
+    
 
-    const commentCreateHandler = (newComment) => {
-        setComments(state => [...state, newComment])
+    const commentCreateHandler = async (comment) => {
+        await create(bootId, comment)
     }
 
     const commentAction = async (formData) => {
         const comment = formData.get('comment')
 
-        const createComment = await commentService.create(username, bootId, comment)
-
-        commentCreateHandler(createComment)
+        commentCreateHandler(comment)
 
     }
     return (
