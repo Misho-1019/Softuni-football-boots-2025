@@ -18,6 +18,7 @@ export const useComments = (bootId) => {
 
     return {
         comments,
+        setComments,
     }
 }
 
