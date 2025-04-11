@@ -2,18 +2,33 @@ import { useContext } from "react";
 import { UserContext } from "../../context/userContext";
 import { useParams } from "react-router";
 import { useComments, useCreateComment } from "../../api/commentApi";
+import useAuth from "../../hooks/useAuth";
 
 export default function CommentSection() {
-    const { username } = useContext(UserContext)
+    const { username, _id: userId } = useAuth()
+    // const { username } = useContext(UserContext)
     const { bootId } = useParams()
     const { comments, addComment } = useComments(bootId)
-    const { create } = useCreateComment()  
-    
+    const { create } = useCreateComment()
+
 
     const commentCreateHandler = async (comment) => {
-       const commentResult = await create(bootId, comment)
+        const newOptimisticComment = {
+            _id: uuid(),
+            _ownerId: userId,
+            bootId,
+            comment,
+            pending: true,
+            author: {
+                username,
+            }
+        }
 
-       addComment(commentResult)
+        setOptimisticComments(newOptimisticComment)
+
+        const commentResult = await create(bootId, comment)
+
+        addComment({...commentResult, author: { username }})
     }
 
     const commentAction = async (formData) => {

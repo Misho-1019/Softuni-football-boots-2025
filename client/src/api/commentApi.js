@@ -19,7 +19,8 @@ export const useComments = (bootId) => {
 
     useEffect(() => {
         const searchParams = new URLSearchParams({
-            where: `bootId="${bootId}"`
+            where: `bootId="${bootId}"`,
+            load: `author=_ownerId:users`,
         })
 
         .then(result => dispatch({ type: 'GET_ALL', payload: result }))
