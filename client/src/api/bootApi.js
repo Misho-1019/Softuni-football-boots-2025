@@ -3,7 +3,7 @@ import { UserContext } from "../context/userContext";
 import request from "../utils/request";
 import useAuth from "../hooks/useAuth";
 
-const baseUrl = 'http://localhost:3030/data/boots';
+const baseUrl = `${import.meta.env.VITE_APP_SERVER_URL}/data/boots`;
 
 export const useBoots = () => {
     const [boots, setBoots] = useState([])

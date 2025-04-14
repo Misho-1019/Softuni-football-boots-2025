@@ -2,7 +2,7 @@ import { useContext } from "react";
 import request from "../utils/request";
 import { UserContext } from "../context/userContext";
 
-const baseUrl = 'http://localhost:3030/data/likes';
+const baseUrl = `${import.meta.env.VITE_APP_SERVER_URL}/data/likes`;
 
 export const useLikeBoot = () => {
     const { accessToken } = useContext(UserContext)
