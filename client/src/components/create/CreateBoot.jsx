@@ -28,7 +28,7 @@ export default function CreateBoot() {
 
     const submitAction = async (formData) => {
         try {
-            const bootData = Object.fromEntries(formData)
+            const bootData = {...formData}
 
             await createBoot(bootData)
 

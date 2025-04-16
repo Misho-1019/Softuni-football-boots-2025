@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
+import { useEffect } from "react";
 
 const schema = yup.object({
     imageUrl: yup.string().url('Must be valid URL').required('Image URL is required!'),
@@ -26,21 +27,28 @@ export default function EditBoot() {
         register,
         handleSubmit,
         formState: { errors, isSubmitting },
+        reset,
     } = useForm({
         resolver: yupResolver(schema),
-        defaultValues: {
-            imageUrl: boot.imageUrl,
-            brand: boot.brand,
-            price: boot.price,
-            color: boot.color,
-            description: boot.description,
-            stud: boot.stud,
-        }
     })
+
+    useEffect(() => {
+        if (boot && boot.imageUrl) {
+            reset({
+                imageUrl: boot.imageUrl,
+                brand: boot.brand,
+                price: boot.price,
+                color: boot.color,
+                description: boot.description,
+                stud: boot.stud,
+            });
+        }
+    }, [boot, reset]);
+
 
     const formAction = async (formData) => {
         try {
-            const boodData = Object.fromEntries(formData)
+            const boodData = formData
 
             await edit(bootId, boodData)
 
@@ -73,7 +81,7 @@ export default function EditBoot() {
                 <form onSubmit={handleSubmit(formAction)} noValidate>
                     <input type="text" id="imageUrl" name="imageUrl" placeholder="Upload a photo..." {...register('imageUrl')} />
                     {errors.imageUrl && <p className="error">{errors.imageUrl.message}</p>}
-                    
+
                     <input type="text" name="brand" placeholder="Brand" {...register('brand')} />
                     {errors.brand && <p className="error">{errors.brand.message}</p>}
 
