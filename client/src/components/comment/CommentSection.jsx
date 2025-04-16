@@ -1,5 +1,5 @@
 import { useOptimistic } from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import { useComments, useCreateComment } from "../../api/commentApi";
 import useAuth from "../../hooks/useAuth";
 import { v4 as uuid } from "uuid";
@@ -47,6 +47,7 @@ export default function CommentSection() {
                     <button type="submit" className="btn primary">
                         Post Review
                     </button>
+                    <Link to={`/boots/${bootId}/details`} className="btn secondary">Back</Link>
                 </form>) : ''}
 
                 <div className="comment-list">
