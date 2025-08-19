@@ -14,6 +14,21 @@ A React + Vite single-page app for browsing and managing football boots, created
 - **Profile** page for the current user
 - **Responsive UI** (Bootstrap + custom CSS) and toast notifications
 
+## 📸 Screenshots
+
+Here are some example screenshots of the application. Place your images in a `screenshots/` folder at the project root.
+
+### Home Page
+![Home Page](./screenshots/home.png)
+
+### Catalog
+![Catalog](./screenshots/catalog.png)
+
+### Boot Details
+![Boot Details](./screenshots/details.png)
+
+---
+
 ## 🧭 App Navigation (Routes)
 | Path | Component | Guard | Purpose |
 |---|---|---|---|
@@ -79,7 +94,7 @@ APIs expect these base paths (from the code):
 
 ## 🚀 Getting Started
 ```bash
-git clone <repo-url>
+git clone https://github.com/Misho-1019/Softuni-football-boots-2025.git
 cd Softuni-football-boots-2025/client
 
 # Install
