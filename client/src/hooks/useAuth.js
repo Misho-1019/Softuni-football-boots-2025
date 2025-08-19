@@ -9,7 +9,7 @@ export default function useAuth() {
         const optionWrapper = {
             ...options,
             headers: {
-                'X-Authorization': authData.accessToken,
+                ...(authData?.accessToken ? { "X-Authorization": authData.accessToken } : {}),
                 ...options.headers,
             }
         }
